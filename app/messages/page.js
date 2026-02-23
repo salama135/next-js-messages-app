@@ -1,4 +1,4 @@
-import { unstable_noStore } from 'next/cache';
+// import { unstable_noStore } from 'next/cache';
 
 import Messages from '@/components/messages';
 
@@ -7,7 +7,9 @@ import Messages from '@/components/messages';
 
 export default async function MessagesPage() {
   // unstable_noStore();
-  const response = await fetch('http://localhost:8080/messages');
+  const response = await fetch('http://localhost:8080/messages', {
+    next: { tags: ['msg'] },
+  });
   const messages = await response.json();
 
   if (!messages || messages.length === 0) {
